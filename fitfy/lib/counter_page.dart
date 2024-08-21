@@ -1,4 +1,4 @@
-import 'package:fitfy/counter_cubid.dart';
+import 'package:fitfy/cubit/counter_cubid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,8 +11,30 @@ class CounterPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Bloc example'),
       ),
-      body: BlocBuilder<CounterCubid, int>(
-        builder: (context, count) => Center(child: Text('$count')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                color: const Color.fromARGB(255, 234, 154, 177),
+              ),
+              child: Center(
+                child:
+                    BlocBuilder<CounterCubid, int>(builder: (context, count) {
+                  return Text(
+                    '$count',
+                    style: const TextStyle(
+                        fontSize: 30, fontWeight: FontWeight.bold),
+                  );
+                }),
+              ),
+            ),
+          )
+        ],
       ),
       floatingActionButton: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
