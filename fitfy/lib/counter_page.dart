@@ -1,4 +1,5 @@
 import 'package:fitfy/cubit/counter_cubid.dart';
+import 'package:fitfy/other_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +8,7 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final counterCubit = BlocProvider.of<CounterCubid>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bloc example'),
@@ -23,14 +25,15 @@ class CounterPage extends StatelessWidget {
                 color: const Color.fromARGB(255, 234, 154, 177),
               ),
               child: Center(
-                child:
-                    BlocBuilder<CounterCubid, int>(builder: (context, count) {
-                  return Text(
-                    '$count',
-                    style: const TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.bold),
-                  );
-                }),
+                child: BlocBuilder<CounterCubid, int>(
+                    bloc: counterCubit,
+                    builder: (context, count) {
+                      return Text(
+                        '$count',
+                        style: const TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                      );
+                    }),
               ),
             ),
           )
@@ -49,6 +52,16 @@ class CounterPage extends StatelessWidget {
             child: const Icon(Icons.remove),
             onPressed: () => context.read<CounterCubid>().decrement(),
           ),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const IncrementDecrementPage(),
+                ),
+              );
+            },
+            child: const Icon(Icons.abc),
+          )
         ],
       ),
     );
