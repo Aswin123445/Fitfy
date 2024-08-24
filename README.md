@@ -1,1 +1,1 @@
-"My project on flutter to make a fitness application" 
+this is flutter project that i used to understand the concept of statemanagement tool flutter
